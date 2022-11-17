@@ -1,5 +1,4 @@
 import React from "react";
-
 const InfoCard = ({ card }) => {
   const { name, description, icon,phone, bgClass } = card;
   return (

@@ -5,6 +5,7 @@ import Appointments from "../../Pages/Appointments/Appointments";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
+import NotFound from "../../Shared/NotFound/NotFound";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path:'/login',
                 element:<Login></Login>
+            },
+            {
+                path:'*',
+                element:<NotFound></NotFound>
             }
         ]
         

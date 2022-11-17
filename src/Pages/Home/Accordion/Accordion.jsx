@@ -6,7 +6,9 @@ const Accordion = () => {
       <div>
      
       </div>
-      <div>hello</div>
+        <div>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quaerat libero quisquam temporibus sapiente cum voluptas, sint alias fugit eligendi deserunt tempora? Repellat in dolore iste unde provident ratione blanditiis temporibus, saepe quas distinctio aut sint aspernatur praesentium? A eos magnam officia harum itaque ipsum? Saepe perferendis tempora neque fuga.</p>
+        </div>
     </div>
   );
 };

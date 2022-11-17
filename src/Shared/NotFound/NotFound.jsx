@@ -1,9 +1,10 @@
 import React from 'react';
+import UseNotFound from '../../Pages/UseLottie/UseNotFound';
 
 const NotFound = () => {
     return (
-        <div>
-            <h1>Not found 404 </h1>
+        <div style={{width:'850px',margin:'20px auto'}}>
+          <UseNotFound className="w-1"></UseNotFound>
         </div>
     );
 };

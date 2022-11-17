@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import emailjs from '@emailjs/browser';
 import appointment from "../../../assets/images/appointment.png";
 import PrimaryButton from "../../PrimaryButton/PrimaryButton";
+import UseContact from "../../UseLottie/UseContact";
 const Contact = () => {
   const form = useRef();
 
@@ -25,7 +26,7 @@ const Contact = () => {
       className="bg-primary px-10 py-14 "
     >
       <div className="text-center pb-14 text-white">
-        <p className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-accent to-secondary">
+        <p className="text-4xl font-bold text-primary">
           Contact Us
         </p>
         <h1 className="text-4xl">Stay connected with us</h1>
@@ -64,7 +65,9 @@ const Contact = () => {
            </form>
         </div>
 
-        <div></div>
+        <div>
+          <UseContact></UseContact>
+        </div>
       </div>
     </section>
   );
