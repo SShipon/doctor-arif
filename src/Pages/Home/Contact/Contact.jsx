@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import appointment from "../../../assets/images/appointment.png";
 import PrimaryButton from "../../PrimaryButton/PrimaryButton";
 import UseContact from "../../UseLottie/UseContact";
+import Swal from "sweetalert2";
 const Contact = () => {
   const form = useRef();
 
@@ -12,7 +13,11 @@ const Contact = () => {
     emailjs.sendForm('service_q7fw8tc', 'template_y10yfz7', form.current, '0AGx-yacdwuJYI7go')
       .then((result) => {
           console.log(result.text);
-          console.log('message sent');
+          Swal.fire(
+            'ধন্যবাদ আপনার মেসেজটি সফল হয়েছে। !!!',
+            'ক্লিক করুন ওকে বাটনে!',
+            'ok'
+          )
       }, (error) => {
           console.log(error.text);
       });
