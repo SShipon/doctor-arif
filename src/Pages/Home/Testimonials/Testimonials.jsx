@@ -1,42 +1,77 @@
-import React from "react";
-import quote from "../../../assets/icons/quote.svg";
-import people1 from '../../../assets/images/people1.png'
-import people2 from '../../../assets/images/people2.png'
-import people3 from '../../../assets/images/people3.png'
+import React from 'react';
+import Slider from "react-slick";
+import MiniTestimonial from './MiniTestimonial';
 const Testimonials = () => {
-    const reviews =[
+const testcode =[
+  {
+  id:1,
+  name:'Bahi',
+  des:'hello i sm shipon form comilla is very nice zone'
+},
+{
+  id:2,
+  name:'Arif',
+  des:'hello i sm shipon form comilla is very nice zone'
+},
+{
+  id:3,
+  name:'Shipon',
+  des:'hello i sm shipon form comilla is very nice zone'
+}
+
+]
+
+   var settings = {
+     autoplay:true,
+      dots: true,
+      infinite: true,
+     speed: 500,
+    vertical: true,
+     verticalSwiping:true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+     
+      responsive: [
         {
-            id:1,
-            name:'Jamil Hasan',
-            review:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro neque accusamus ducimus optio blanditiis, perferendis minima nobis quibusdam impedit necessitatibus eaque reiciendis ',
-            location:'comilla'
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
+          }
         },
         {
-            id:2,
-            name:'Jamil Hasan',
-            review:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro neque accusamus ducimus optio blanditiis, perferendis minima nobis quibusdam impedit necessitatibus eaque reiciendis ',
-            location:'comilla'
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            initialSlide: 1
+          }
         },
         {
-            id:3,
-            name:'Abdul Hasan',
-            review:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro neque accusamus ducimus optio blanditiis, perferendis minima nobis quibusdam impedit necessitatibus eaque reiciendis ',
-            location:'comilla'
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
         }
-    ]
+      ]
+    };
   return (
-    <section className="my-16">
-      <div className="flex justify-between">
-        <div>
-          <h4 className="text-xl text-primary font-bold">Testimonial</h4>
-          <h2 className="text-4xl">what Our Patients Says</h2>
-        </div>
- 
-          <figure>
-            <img className="w-24 lg:w-48" src={quote} alt="" />
-          </figure>
-        </div>
-    </section>
+    <>
+      <div>
+        <h2> Responsive </h2>
+        <Slider className='mx-auto' {...settings}>
+         {
+            testcode.map(test=><MiniTestimonial
+              key={test.id}
+             test={test}
+            ></MiniTestimonial>)
+          }
+        </Slider>
+      </div>
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ const Banner = () => {
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img src={phaco} className=" sm:w-1/2 rounded-lg shadow-2xl" />
         <div>
-          <h1 className="text-4xl italic text-accent">
+          <h1 className="lg:text-4xl sm:text-xl font-bold	italic text-accent">
             <Typewriter
               words={[
                 "আসসালামু আলাইকুম।",
