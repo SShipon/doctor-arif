@@ -8,25 +8,25 @@ const InfoCards = () => {
     const cardData =[
         {
             id:1,
-            name:'Opening Hours',
-            description:'Open 4.00 pm to 7.00pm everyday',
+            name:'চেম্বার খোলার সময়।',
+            description:'প্রতিদিন বিকাল ৪.০০ টা থেকে সন্ধ্যা ৭.০০ টা পর্যন্ত চেম্বার করবেন। শুক্রবার ব্যতীত।',
             icon:clock,
-            bgClass:'bg-accent'
+            bgClass:'bg-gradient-to-r from-indigo-500 to-accent'
         },
         {
             id:2,
-            name:'Visit our location',
-            description:'Cumilla Morden Hospital Sadar South Cumilla ',
+            name:'আমাদের অবস্থান দেখুন',
+            description:'কুমিল্লা মর্ডান হসপিটাল, লাকসাম রোড শাকতলা কুমিল্লা।',
             icon:marker,
             bgClass:'bg-gradient-to-r from-primary to-accent'
         },
         {
             id:3,
-            name:'Contact us now',
+            name:'আপনার সেবার জন্য যোগাযোগ করুন।',
             description:'+88018 45678969 arifulislam@gmail.com',
-            phone:'+88017030594651',
+            phone:'+880170305946512',
             icon:phone,
-            bgClass:'bg-secondary'
+            bgClass:'bg-gradient-to-r from-violet-500 to-fuchsia-500'
         }
     ]
    
