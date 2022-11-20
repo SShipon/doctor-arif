@@ -1,0 +1,14 @@
+.footer_parent li{
+    list-style-type: none;
+}
+.footer_parent li:hover{
+    text-decoration: underline;
+    color: #19D3AE;
+    transition: 2s,
+
+}
+.icon-parent :hover{
+    transition: 2s;
+   color: rgb(207, 35, 173);
+   
+}

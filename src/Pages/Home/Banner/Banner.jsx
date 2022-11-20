@@ -1,8 +1,6 @@
 import React from "react";
 import phaco from "../../../assets/images/phaco.jpg";
 import { Typewriter } from "react-simple-typewriter";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
 const Banner = () => {
   return (
     <div className="hero mt-16">
@@ -35,7 +33,7 @@ const Banner = () => {
           </p>
           <button className="btn btn-primary bg-gradient-to-r from-primary to-accent text-white transition duration-300 ease-in-out">
             Get Started{" "}
-            <FontAwesomeIcon icon={faEye} className=" p-2 "></FontAwesomeIcon>
+           
           </button>
         </div>
       </div>

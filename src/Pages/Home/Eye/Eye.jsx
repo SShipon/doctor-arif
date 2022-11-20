@@ -4,7 +4,7 @@ import PrimaryButton from "../../PrimaryButton/PrimaryButton";
 const Eye = () => {
   return (
     <section className="hero mt-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 justify-center items-center ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 justify-center items-center md:gap-4 sm:gap-4">
         <div>
           <img
             style={{ width: "550px" }}
@@ -13,7 +13,7 @@ const Eye = () => {
             className="rounded-lg shadow-2xl"
           />
         </div>
-        <div>
+        <div className="mt-8 sm:mb-4">
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis
             odio inventore culpa, provident recusandae enim ipsa vero fugit,

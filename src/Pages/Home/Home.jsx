@@ -2,11 +2,13 @@ import React from 'react';
 import Accordion from './Accordion/Accordion';
 import Banner from './Banner/Banner';
 import Contact from './Contact/Contact';
+import Counter from './Counter/Counter';
 import Eye from './Eye/Eye';
 import InfoCards from './InfoCards/InfoCards';
 import MakeAppointment from './MakeAppointment/MakeAppointment';
 import Services from './Services/Services';
 import Testimonials from './Testimonials/Testimonials';
+import TextContent from './Testimonials/TextContent';
 
 const Home = () => {
     return (
@@ -16,8 +18,10 @@ const Home = () => {
             <Services></Services>
             <Eye></Eye>
             <MakeAppointment></MakeAppointment>
-            <Testimonials></Testimonials>
+            <Counter></Counter>
             <Contact></Contact>
+            <TextContent></TextContent>
+            <Testimonials></Testimonials>
             <Accordion></Accordion>
         </div>
     );

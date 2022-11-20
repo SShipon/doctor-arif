@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
 import About from "../../Pages/About/About";
-import Appointments from "../../Pages/Appointments/Appointments";
+import Appointment from "../../Pages/Appointments/Appointment/Appointment";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -18,7 +18,8 @@ const router = createBrowserRouter([
             },
             {
                 path:'/appointment',
-                element:<Appointments></Appointments>
+                element:<Appointment></Appointment>
+                
             },
             {
                 path:'/about',

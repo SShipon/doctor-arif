@@ -9,14 +9,14 @@ const InfoCards = () => {
         {
             id:1,
             name:'চেম্বার খোলার সময়।',
-            description:'প্রতিদিন বিকাল ৪.০০ টা থেকে সন্ধ্যা ৭.০০ টা পর্যন্ত চেম্বার করবেন। শুক্রবার ব্যতীত।',
+            description:'প্রতিদিন বিকাল ৪.০০ টা থেকে সন্ধ্যা ৭.০০ টা পর্যন্ত চেম্বার করবেন। শুক্রবার বন্ধ।',
             icon:clock,
             bgClass:'bg-gradient-to-r from-indigo-500 to-accent'
         },
         {
             id:2,
             name:'আমাদের অবস্থান দেখুন',
-            description:'কুমিল্লা মর্ডান হসপিটাল, লাকসাম রোড শাকতলা কুমিল্লা।',
+            description:'কুমিল্লা মডার্ণ হসপিটাল, লাকসাম রোড শাকতলা কুমিল্লা।',
             icon:marker,
             bgClass:'bg-gradient-to-r from-primary to-accent'
         },
