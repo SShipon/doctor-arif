@@ -10,16 +10,16 @@ const AppointmentBanner = () => {
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
             src={phaco1}
-            className=" sm:w-[500px] rounded-lg shadow-2xl"
+            className=" sm:w-[480px] rounded-lg shadow-2xl"
             alt="eye phaco machine"
           />
-          <div className="mr-8">
-          <DayPicker
+          <div className="mr-6">
+          <DayPicker 
           mode="single"
           selected={selectedDate}
           onSelect={setSelectedDate}
           />
-          <h6 className="text-3xl font-bold">Your have selected date: {format(selectedDate,'PP')}</h6>
+          <h6 className=" font-bold text-[11px] lg:text-[36px] md:text-[24px]">Your have selected date: {format(selectedDate,'PP')}</h6>
           </div>
         </div>
       </div>
