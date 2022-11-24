@@ -7,7 +7,7 @@ import'./Footer.css'
 const Footer = () => {
   return (
     <section className="mt-8 bg-accent p-3 md:p-16 sm:text-center">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-left text-[13px] md:text-[14px] lg:text-[18px]  p-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-left text-[11px] md:text-[14px] lg:text-[18px]  p-4">
         <div className="footer_parent text-white ">
           <span className="footer-title">Services</span>
            <li><Link>Branding</Link></li>
@@ -30,7 +30,7 @@ const Footer = () => {
         </div>
         <div className="footer_parent text-white">
         <span className="footer-title">Help</span>
-           <li><Link><i class="fa-solid fa-phone"></i>01703059462</Link></li>
+           <li><Link><i class="fa-solid fa-phone"></i>+8801703059462</Link></li>
            <li><Link><i class="fa-solid fa-phone-volume"></i> +880005455</Link></li>
            <li><Link><i class="fa-solid fa-envelope-circle-check text-sm"></i> arifulislam@gmail.com</Link></li>
         </div>
