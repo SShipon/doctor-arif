@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { format } from 'date-fns';
-import { DayPicker } from 'react-day-picker';
+import { DayPicker } from "react-day-picker";
+
 import phaco1 from '../../../assets/images/phaco1.jpg'
 const AppointmentBanner = ({selectedDate,setSelectedDate}) => {
     

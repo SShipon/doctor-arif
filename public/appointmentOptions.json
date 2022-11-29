@@ -90,7 +90,15 @@
       ]
     },
     {
+      "_id": 5,
       "name": "Pediatric Dental",
+      "slots": [
+        
+      ]
+    },
+    {
+      "_id": 6,
+      "name": "Phaco Surgery",
       "slots": [
         "08.00 AM - 08.30 AM",
         "08.30 AM - 09.00 AM",
@@ -108,13 +116,6 @@
         "3.30 PM - 4.00 PM",
         "4.00 PM - 4.30 PM",
         "4.30 PM - 5.00 PM"
-      ]
-    },
-    {
-      "_id": 6,
-      "name": "Phaco Surgery",
-      "slots": [
-        "08.00 AM - 08.30 AM"
        
       ]
     }
