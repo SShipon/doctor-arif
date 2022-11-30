@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import UseTitle from '../../../Hooks/UseTitle';
 import AppointmentBanner from '../AppointmentBanner/AppointmentBanner';
 import AvailableAppointments from '../AvailableAppointments/AvailableAppointments';
 
 const Appointment = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date())
+  UseTitle('Appointment')
+    const [selectedDate, setSelectedDate] = useState(new Date())
     return (
         <div className='mt-16'>
           <AppointmentBanner

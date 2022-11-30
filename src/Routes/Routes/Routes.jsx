@@ -5,6 +5,7 @@ import Appointment from "../../Pages/Appointments/Appointment/Appointment";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
+import Register from "../../Pages/Login/Register";
 import NotFound from "../../Shared/NotFound/NotFound";
 
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path:'/login',
                 element:<Login></Login>
+            },
+            {
+                path:'/register',
+                element:<Register></Register>
             },
             {
                 path:'*',

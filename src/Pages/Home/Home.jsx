@@ -1,4 +1,5 @@
 import React from 'react';
+import UseTitle from '../../Hooks/UseTitle';
 import Accordion from './Accordion/Accordion';
 import Banner from './Banner/Banner';
 import Contact from './Contact/Contact';
@@ -11,6 +12,7 @@ import Testimonials from './Testimonials/Testimonials';
 import TextContent from './Testimonials/TextContent';
 
 const Home = () => {
+    UseTitle('Home')
     return (
         <div className='mx-5'>
             <Banner></Banner>
