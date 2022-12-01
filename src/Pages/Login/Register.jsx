@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import UseTitle from "../../Hooks/UseTitle";
 import LoginAnimation from "./LoginAnimation";
+import RegisterAnimation from './RegisterAnimation';
 const Register = () => {
     UseTitle("Register");
   const { register,handleSubmit,formState: { errors } } = useForm();
@@ -15,7 +16,7 @@ const Register = () => {
         <section className="mx-5">
          <div className="mt-16 h-[600 px] grid  sm:grid-cols-1 md:grid-cols-2  lg:grid-cols-2 justify-center items-center">
        <div className=" mx-auto">
-          <LoginAnimation></LoginAnimation>
+         <RegisterAnimation></RegisterAnimation>
        </div>
        <div>
        <div className="w-96 p-7 mx-auto" >
