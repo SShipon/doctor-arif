@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import UseTitle from "../../Hooks/UseTitle";
-import LoginAnimation from "./LoginAnimation";
 import RegisterAnimation from './RegisterAnimation';
+import { AuthContext } from '../../Contexts/AuthProvider';
+import Swal from "sweetalert2";
 const Register = () => {
     UseTitle("Register");
-  const { register,handleSubmit,formState: { errors } } = useForm();
- 
-
+  const { register,handleSubmit,formState: { errors }, reset} = useForm();
+  const {createUser}= useContext(AuthContext)
+   
   const HandleRegister = data =>{
-     console.log(data)
+     createUser(data.email, data.password)
+     .then(result =>{
+       const user = result.user;
+       console.log(user);
+       Swal.fire(
+        " Thank you !!!",
+        'Your account has been created'       
+      );
+       reset()
+     })
+    .catch(error => console.log(error))
+    
   }
     return (
         <section className="mx-5">
@@ -20,7 +32,7 @@ const Register = () => {
        </div>
        <div>
        <div className="w-96 p-7 mx-auto" >
-        <h2 className="text-xl text-center">Register</h2>
+        <h2 className="text-xl text-center font-bold">Register</h2>
         <form onSubmit={handleSubmit(HandleRegister)}>
           {/* name filed  */}
           <div className="form-control w-full max-w-xs">
@@ -42,7 +54,12 @@ const Register = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Password</span></label>
-            <input type="password" {...register("password",{required:'Password is required ',minLength:{value:6, message:'Password must be 6 characters or long'}})}   className="input input-bordered w-full max-w-xs" />
+            <input type="password" {...register("password",{required:'Password is required ',
+            minLength:{value:6, message:'Password must be 6 characters or long'},
+            pattern:{value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message:'Password must have uppercase number and special character number'}
+            })}   className="input input-bordered w-full max-w-xs" />
+
+
             <label className="label"><span className="label-text">Forget Password</span></label>
             {errors.password && <p className="text-red-600 my-2">{errors.password?.message}</p>}
           </div>
