@@ -1,17 +1,33 @@
-import React, { } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Contexts/AuthProvider";
 import UseTitle from "../../Hooks/UseTitle";
 import LoginAnimation from "./LoginAnimation";
-
+import Swal from "sweetalert2";
 const Login = () => {
   UseTitle("Login");
   const { register, formState: { errors },handleSubmit,reset } = useForm();
- 
-
+ const [showPassword, setShowPassword] = useState(false);
+ const { signIn} = useContext(AuthContext)
+ const [logInError, setLoginError] = useState('')
   const handleLogin = data =>{
-     console.log(data)
-     reset()
+    setLoginError('')
+    signIn(data.email, data.password)
+    .then(result =>{
+      const user = result.user;
+      console.log(user)
+      Swal.fire(
+        " Thank you !!!",
+        'Your account has been Login'       
+      );
+      reset()
+    })
+    .catch((error) => {
+      console.log(error)
+       setLoginError(error.message)
+      
+    });
   }
 
 
@@ -28,14 +44,20 @@ const Login = () => {
             {...register("email",{required:"Email Address is required"})} />
              {errors.email && <p className="text-red-600 my-2">{errors.email?.message}</p>}
           </div>
+
+          {/* password filed  */}
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Password</span></label>
-            <input type="password"   className="input input-bordered w-full max-w-xs" {...register("password",{required:'Password is required ',minLength:{value:6, message:'Password must be 6 characters or longer'}})} />
-            <label className="label"><span className="label-text">Forget Password</span></label>
-            {errors.password && <p className="text-red-600 my-2">{errors.password?.message}</p>}
-
+            <input  type={showPassword ? "text" : "password"} className="input input-bordered w-full max-w-xs" {...register("password",{required:'Password is required ',
+            minLength:{value:6, message:'Password must be 6 characters or longer'}})} />
           </div>
+
+            {/* error message */}
+          <label className="label"><span className="label-text">Forget Password</span></label>
+            {errors.password && <p className="text-red-600 my-2">{errors.password?.message}</p>}
           <input className="btn btn-accent w-full" value='Login' type="submit" />
+
+          {logInError && <p className="text-red-600">{logInError}</p>}
         </form>
         <p>New to Doctors ? <Link className="text-secondary" to='/register'>Create New Account</Link></p>
         <div className="divider">OR</div>
