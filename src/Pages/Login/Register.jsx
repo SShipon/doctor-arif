@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import UseTitle from "../../Hooks/UseTitle";
 import RegisterAnimation from './RegisterAnimation';
+import google from '../../assets/google/download__5_-removebg-preview.png'
+import github from '../../assets/google/download__7_-removebg-preview.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import Swal from "sweetalert2";
 const Register = () => {
@@ -70,10 +72,10 @@ const Register = () => {
         </form>
         <p>Already hve an account ? <Link className="text-secondary" to='/login'>Please Login</Link></p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline btn-second w-full">CONTINUE WITH GOOGLE</button>
+        <button  className="btn btn-outline btn-second w-full"> <img className='mx-3' style={{width:'40px'}} src={google} alt="" /> CONTINUE WITH GOOGLE</button>
         <br />
         <br />
-        <button className="btn btn-outline btn-second w-full">CONTINUE WITH GITHUB</button>
+        <button className="btn btn-outline btn-second w-full"><img className='mx-3' style={{width:'40px'}} src={github} alt="" />CONTINUE WITH GITHUB</button>
       </div>
        </div>
     </div>
