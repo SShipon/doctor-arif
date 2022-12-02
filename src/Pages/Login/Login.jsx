@@ -7,11 +7,13 @@ import { AuthContext } from "../../Contexts/AuthProvider";
 import UseTitle from "../../Hooks/UseTitle";
 import LoginAnimation from "./LoginAnimation";
 import Swal from "sweetalert2";
+import { GoogleAuthProvider } from "firebase/auth";
 const Login = () => {
   UseTitle("Login");
   const { register, formState: { errors },handleSubmit,reset } = useForm();
  const [showPassword, setShowPassword] = useState(false);
- const { signIn} = useContext(AuthContext)
+ const { signIn,googleLoginInProvider} = useContext(AuthContext)
+ const googleProvider = new GoogleAuthProvider();
  const [logInError, setLoginError] = useState('')
   const handleLogin = data =>{
     setLoginError('')
@@ -30,6 +32,19 @@ const Login = () => {
        setLoginError(error.message)
       
     });
+  }
+
+  const handleGoogleSignIn = () =>{
+    googleLoginInProvider(googleProvider)
+    .then(result =>{
+      const user = result.user;
+      console.log(user)
+      Swal.fire(
+        " Thank you !!!",
+        'Your account has been created'       
+      );
+    })
+    .catch(error => console.log(error))
   }
 
 
@@ -63,7 +78,8 @@ const Login = () => {
         </form>
         <p>New to Doctors ? <Link className="text-secondary" to='/register'>Create New Account</Link></p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline btn-second w-full"><img className='mx-3' style={{width:'40px'}} src={google} alt="" />CONTINUE WITH GOOGLE</button>
+
+        <button onClick={handleGoogleSignIn} className="btn btn-outline btn-second w-full"><img className='mx-3' style={{width:'40px'}} src={google} alt="" />CONTINUE WITH GOOGLE</button>
         <br />
         <br />
         <button className="btn btn-outline btn-second w-full"><img className='mx-3' style={{width:'40px'}} src={github} alt="" />CONTINUE WITH GITHUB</button>

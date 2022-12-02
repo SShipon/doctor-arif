@@ -7,11 +7,12 @@ import google from '../../assets/google/download__5_-removebg-preview.png'
 import github from '../../assets/google/download__7_-removebg-preview.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import Swal from "sweetalert2";
+import { GoogleAuthProvider } from 'firebase/auth';
 const Register = () => {
     UseTitle("Register");
   const { register,handleSubmit,formState: { errors }, reset} = useForm();
-  const {createUser}= useContext(AuthContext)
-   
+  const {createUser,googleLoginInProvider}= useContext(AuthContext)
+  const googleProvider = new GoogleAuthProvider();
   const HandleRegister = data =>{
      createUser(data.email, data.password)
      .then(result =>{
@@ -25,6 +26,20 @@ const Register = () => {
      })
     .catch(error => console.log(error))
     
+  }
+
+  const handleGoogleSignIn = () =>{
+    googleLoginInProvider(googleProvider)
+    .then(result =>{
+      const user = result.user;
+      console.log(user)
+
+ Swal.fire(
+        " Thank you !!!",
+        'Your account has been created'       
+      );
+    })
+    .catch(error => console.log(error))
   }
     return (
         <section className="mx-5">
@@ -72,7 +87,8 @@ const Register = () => {
         </form>
         <p>Already hve an account ? <Link className="text-secondary" to='/login'>Please Login</Link></p>
         <div className="divider">OR</div>
-        <button  className="btn btn-outline btn-second w-full"> <img className='mx-3' style={{width:'40px'}} src={google} alt="" /> CONTINUE WITH GOOGLE</button>
+
+        <button onClick={handleGoogleSignIn} className="btn btn-outline btn-second w-full"> <img className='mx-3' style={{width:'40px'}} src={google} alt="" /> CONTINUE WITH GOOGLE</button>
         <br />
         <br />
         <button className="btn btn-outline btn-second w-full"><img className='mx-3' style={{width:'40px'}} src={github} alt="" />CONTINUE WITH GITHUB</button>
