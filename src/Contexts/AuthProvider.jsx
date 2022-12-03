@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth'
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification,  signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth'
 import app from '../firebase/firebase.config';
+import Swal from 'sweetalert2';
 export const AuthContext = createContext()
 const auth = getAuth(app)
 const AuthProvider = ({children}) => {
@@ -29,6 +30,15 @@ const [user, setUser] = useState(null)
     return signOut(auth)
  }
 
+ const verifyEmail = ()=>{
+   sendEmailVerification(auth.currentUser)
+     .then(()=>{
+      alert('cheek your email please verify now')
+     })
+ }
+
+
+
 
  useEffect(()=>{
    const unsubscribe = onAuthStateChanged(auth, currentUser=>{
@@ -43,8 +53,9 @@ const [user, setUser] = useState(null)
         signIn,
         user,
         logOut,
+        verifyEmail,
         googleLoginInProvider,
-        githubSignUp
+        githubSignUp,
 
     }
 

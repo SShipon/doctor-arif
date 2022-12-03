@@ -30,17 +30,17 @@ const Footer = () => {
         </div>
         <div className="footer_parent text-white">
         <span className="footer-title">Help</span>
-           <li><Link><i class="fa-solid fa-phone"></i>+8801703059462</Link></li>
-           <li><Link><i class="fa-solid fa-phone-volume"></i> +880005455</Link></li>
-           <li><Link><i class="fa-solid fa-envelope-circle-check text-sm"></i> arifulislam@gmail.com</Link></li>
+           <li><Link><i className="fa-solid fa-phone"></i>+8801703059462</Link></li>
+           <li><Link><i className="fa-solid fa-phone-volume"></i> +880005455</Link></li>
+           <li><Link><i className="fa-solid fa-envelope-circle-check text-sm"></i> arifulislam@gmail.com</Link></li>
         </div>
       </div>
       <p className="text-center my-6"><DateFooter></DateFooter></p>
       <div className="text-center text-primary icon-parent">
-      <i class="m-2 text-3xl  fa-brands fa-facebook"></i>
-      <i class="m-2 text-3xl  fa-brands fa-facebook-messenger"></i>
-      <i class="m-2 text-3xl  fa-brands fa-linkedin"></i>
-      <i class="m-2 text-3xl  fa-brands fa-youtube"></i>
+      <i className="m-2 text-3xl  fa-brands fa-facebook"></i>
+      <i className="m-2 text-3xl  fa-brands fa-facebook-messenger"></i>
+      <i className="m-2 text-3xl  fa-brands fa-linkedin"></i>
+      <i className="m-2 text-3xl  fa-brands fa-youtube"></i>
       </div>
     </section>
   );

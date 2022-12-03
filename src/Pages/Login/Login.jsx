@@ -84,7 +84,7 @@ const Login = () => {
           </div>
 
             {/* error message */}
-          <label className="label"><span className="label-text">Forget Password</span></label>
+          <label className="label"><span className="label-text">Forget Password <button className='btn btn-link'>Reset</button></span></label>
             {errors.password && <p className="text-red-600 my-2">{errors.password?.message}</p>}
           <input className="btn btn-accent w-full" value='Login' type="submit" />
 

@@ -7,11 +7,11 @@ import google from '../../assets/google/download__5_-removebg-preview.png'
 import github from '../../assets/google/download__20_-removebg-preview.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import Swal from "sweetalert2";
-import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, } from 'firebase/auth';
 const Register = () => {
     UseTitle("Register");
   const { register,handleSubmit,formState: { errors }, reset} = useForm();
-  const {createUser,googleLoginInProvider,githubSignUp}= useContext(AuthContext)
+  const {createUser,googleLoginInProvider,githubSignUp,verifyEmail,}= useContext(AuthContext)
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const HandleRegister = data =>{
@@ -24,6 +24,7 @@ const Register = () => {
         'Your account has been created'       
       );
        reset()
+       verifyEmail()
      })
     .catch(error => console.log(error))
     
@@ -39,6 +40,7 @@ const Register = () => {
         " Thank you !!!",
         'Your account has been created'       
       );
+      verifyEmail()
     })
     .catch(error => console.log(error))
   }
@@ -52,9 +54,13 @@ const Register = () => {
         " Thank you !!!",
         'Your account has been created'       
       );
+      verifyEmail()
      })
+     
      .catch(err =>console.log(err))
   }
+
+  
     return (
         <section className="mx-5">
          <div className="mt-16 h-[600 px] grid  sm:grid-cols-1 md:grid-cols-2  lg:grid-cols-2 justify-center items-center">
@@ -91,7 +97,7 @@ const Register = () => {
             })}   className="input input-bordered w-full max-w-xs" />
 
 
-            <label className="label"><span className="label-text">Forget Password</span></label>
+            <label className="label"><span className="label-text">Forget Password <button className='btn btn-link'>Reset</button></span></label>
             {errors.password && <p className="text-red-600 my-2">{errors.password?.message}</p>}
           </div>
         
