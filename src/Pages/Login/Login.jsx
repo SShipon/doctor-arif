@@ -1,19 +1,20 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import google from '../../assets/google/download__5_-removebg-preview.png'
-import github from '../../assets/google/download__7_-removebg-preview.png'
+import github from '../../assets/google/download__20_-removebg-preview.png'
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 import UseTitle from "../../Hooks/UseTitle";
 import LoginAnimation from "./LoginAnimation";
 import Swal from "sweetalert2";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 const Login = () => {
   UseTitle("Login");
   const { register, formState: { errors },handleSubmit,reset } = useForm();
  const [showPassword, setShowPassword] = useState(false);
- const { signIn,googleLoginInProvider} = useContext(AuthContext)
+ const { signIn,googleLoginInProvider,githubSignUp} = useContext(AuthContext)
  const googleProvider = new GoogleAuthProvider();
+ const githubProvider = new GithubAuthProvider();
  const [logInError, setLoginError] = useState('')
   const handleLogin = data =>{
     setLoginError('')
@@ -46,6 +47,19 @@ const Login = () => {
     })
     .catch(error => console.log(error))
   }
+
+  const handleGitHub =() =>{
+    githubSignUp(githubProvider)
+    .then(result =>{
+     const user = result.user;
+     console.log(user);
+     Swal.fire(
+      " Thank you !!!",
+      'Your account has been created'       
+    );
+    })
+    .catch(err =>console.log(err))
+ }
 
 
   return (
@@ -82,7 +96,7 @@ const Login = () => {
         <button onClick={handleGoogleSignIn} className="btn btn-outline btn-second w-full"><img className='mx-3' style={{width:'40px'}} src={google} alt="" />CONTINUE WITH GOOGLE</button>
         <br />
         <br />
-        <button className="btn btn-outline btn-second w-full"><img className='mx-3' style={{width:'40px'}} src={github} alt="" />CONTINUE WITH GITHUB</button>
+        <button onClick={handleGitHub} className="btn btn-outline btn-second w-full"><img className='mx-3' style={{width:'40px'}} src={github} alt="" />CONTINUE WITH GITHUB</button>
       </div>
        </div>
        <div>

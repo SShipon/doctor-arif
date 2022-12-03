@@ -4,15 +4,16 @@ import { useForm } from "react-hook-form";
 import UseTitle from "../../Hooks/UseTitle";
 import RegisterAnimation from './RegisterAnimation';
 import google from '../../assets/google/download__5_-removebg-preview.png'
-import github from '../../assets/google/download__7_-removebg-preview.png'
+import github from '../../assets/google/download__20_-removebg-preview.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import Swal from "sweetalert2";
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 const Register = () => {
     UseTitle("Register");
   const { register,handleSubmit,formState: { errors }, reset} = useForm();
-  const {createUser,googleLoginInProvider}= useContext(AuthContext)
+  const {createUser,googleLoginInProvider,githubSignUp}= useContext(AuthContext)
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const HandleRegister = data =>{
      createUser(data.email, data.password)
      .then(result =>{
@@ -40,6 +41,19 @@ const Register = () => {
       );
     })
     .catch(error => console.log(error))
+  }
+
+  const handleGitHub =() =>{
+     githubSignUp(githubProvider)
+     .then(result =>{
+      const user = result.user;
+      console.log(user);
+      Swal.fire(
+        " Thank you !!!",
+        'Your account has been created'       
+      );
+     })
+     .catch(err =>console.log(err))
   }
     return (
         <section className="mx-5">
@@ -91,7 +105,7 @@ const Register = () => {
         <button onClick={handleGoogleSignIn} className="btn btn-outline btn-second w-full"> <img className='mx-3' style={{width:'40px'}} src={google} alt="" /> CONTINUE WITH GOOGLE</button>
         <br />
         <br />
-        <button className="btn btn-outline btn-second w-full"><img className='mx-3' style={{width:'40px'}} src={github} alt="" />CONTINUE WITH GITHUB</button>
+        <button onClick={handleGitHub} className="btn btn-outline btn-second w-full"><img className='mx-3' style={{width:'40px'}} src={github} alt="" />CONTINUE WITH GITHUB</button>
       </div>
        </div>
     </div>

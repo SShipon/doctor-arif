@@ -20,6 +20,10 @@ const [user, setUser] = useState(null)
     return signInWithPopup(auth, provider)
  }
 
+ const githubSignUp = (provider)=>{
+   return signInWithPopup(auth, provider)
+ }
+
 
  const logOut  = () =>{
     return signOut(auth)
@@ -39,7 +43,8 @@ const [user, setUser] = useState(null)
         signIn,
         user,
         logOut,
-        googleLoginInProvider
+        googleLoginInProvider,
+        githubSignUp
 
     }
 
