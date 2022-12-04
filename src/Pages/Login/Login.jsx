@@ -16,6 +16,11 @@ const Login = () => {
  const googleProvider = new GoogleAuthProvider();
  const githubProvider = new GithubAuthProvider();
  const [logInError, setLoginError] = useState('')
+ 
+ const togglePassword =()=>{
+  setShowPassword(!showPassword)
+ }
+
   const handleLogin = data =>{
     setLoginError('')
     signIn(data.email, data.password)
@@ -48,6 +53,7 @@ const Login = () => {
     .catch(error => console.log(error))
   }
 
+
   const handleGitHub =() =>{
     githubSignUp(githubProvider)
     .then(result =>{
@@ -71,17 +77,24 @@ const Login = () => {
         <form onSubmit={handleSubmit(handleLogin)}>
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Email</span></label>
-            <input type="text"   className="input input-bordered w-full max-w-xs" 
+          <div className="flex items-center border-solid border-2 border-gray-300 hover:border-solid rounded-[12px]">
+          <input type="text"  className="input  focus:outline-none focus:ring-0 w-[100%]" 
             {...register("email",{required:"Email Address is required"})} />
+          </div>
              {errors.email && <p className="text-red-600 my-2">{errors.email?.message}</p>}
           </div>
 
           {/* password filed  */}
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Password</span></label>
-            <input  type={showPassword ? "text" : "password"} className="input input-bordered w-full max-w-xs" {...register("password",{required:'Password is required ',
+           <div className="flex items-center border-solid border-2 border-gray-300 hover:border-solid rounded-[12px]">
+           <input  type={showPassword ? "text" : "password"} className="input  focus:outline-none focus:ring-0 w-[100%]" {...register("password",{required:'Password is required ',
             minLength:{value:6, message:'Password must be 6 characters or longer'}})} />
+            <i onClick={togglePassword} class={`fa-solid pr-2 ${showPassword? 'fa-eye' : 'fa-eye-slash'}`}></i>
+           </div>
           </div>
+
+            
 
             {/* error message */}
           <label className="label"><span className="label-text">Forget Password <button className='btn btn-link'>Reset</button></span></label>

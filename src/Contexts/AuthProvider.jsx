@@ -1,12 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification,  signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth'
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification,  sendPasswordResetEmail,  signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth'
 import app from '../firebase/firebase.config';
-import Swal from 'sweetalert2';
 export const AuthContext = createContext()
 const auth = getAuth(app)
 const AuthProvider = ({children}) => {
 const [user, setUser] = useState(null)
-
+const [reset, setReset] = useState(null)
 
  const createUser = (email, password)=>{
     return createUserWithEmailAndPassword(auth, email, password)
@@ -30,6 +29,11 @@ const [user, setUser] = useState(null)
     return signOut(auth)
  }
 
+ const handleReset =(email,setReset)=>{
+  return  sendPasswordResetEmail(auth,email)
+
+ }
+
  const verifyEmail = ()=>{
    sendEmailVerification(auth.currentUser)
      .then(()=>{
@@ -49,13 +53,14 @@ const [user, setUser] = useState(null)
  },[])
 
     const authInfo ={
-        createUser,
-        signIn,
-        user,
-        logOut,
-        verifyEmail,
-        googleLoginInProvider,
-        githubSignUp,
+         handleReset,
+         createUser,
+         signIn,
+         user,
+         logOut,
+         verifyEmail,
+         googleLoginInProvider,
+         githubSignUp,
 
     }
 

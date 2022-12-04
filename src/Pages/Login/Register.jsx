@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import UseTitle from "../../Hooks/UseTitle";
@@ -10,10 +10,17 @@ import Swal from "sweetalert2";
 import { GithubAuthProvider, GoogleAuthProvider, } from 'firebase/auth';
 const Register = () => {
     UseTitle("Register");
+    const [showPassword, setShowPassword] = useState(false);
   const { register,handleSubmit,formState: { errors }, reset} = useForm();
-  const {createUser,googleLoginInProvider,githubSignUp,verifyEmail,}= useContext(AuthContext)
+  const {createUser,googleLoginInProvider,githubSignUp,verifyEmail, handleReset}= useContext(AuthContext)
   const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
+  const githubProvider = new GithubAuthProvider(); 
+
+
+  const togglePassword =()=>{
+    setShowPassword(!showPassword)
+   }
+
   const HandleRegister = data =>{
      createUser(data.email, data.password)
      .then(result =>{
@@ -74,30 +81,36 @@ const Register = () => {
           {/* name filed  */}
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Name</span></label>
-            <input type="text" {...register("name",{ required: 'Name is required' })}   className="input input-bordered w-full max-w-xs"/>
-            {errors.name && <p className="text-red-600 my-2">{errors.name?.message}</p>}
+            <div className="flex items-center border-solid border-2 border-gray-300 hover:border-solid rounded-[12px]">
+            <input type="text" {...register("name",{ required: 'Name is required' })}   className="input  focus:outline-none focus:ring-0 w-[100%]"/>
+            </div>
           </div>
+          {errors.name && <p className="text-red-600 my-2">{errors.name?.message}</p>}
 
          {/* email filed */}
 
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Email</span></label>
-            <input type="email" {...register("email",{required:"Email Address is required"})}   className="input input-bordered w-full max-w-xs"/>
-            {errors.email && <p className="text-red-600 my-2">{errors.email?.message}</p>}
+             <div className="flex items-center border-solid border-2 border-gray-300 hover:border-solid rounded-[12px]">
+             <input type="email" {...register("email",{required:"Email Address is required"})}   className="input  focus:outline-none focus:ring-0 w-[100%]"/>
+             </div>
           </div>
+          {errors.email && <p className="text-red-600 my-2">{errors.email?.message}</p>}
 
              {/* Password filed */}
 
 
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Password</span></label>
-            <input type="password" {...register("password",{required:'Password is required ',
+             <div className="flex items-center border-solid border-2 border-gray-300 hover:border-solid rounded-[12px]">
+             <input type={showPassword? 'text':'password'} {...register("password",{required:'Password is required ',
             minLength:{value:6, message:'Password must be 6 characters or long'},
             pattern:{value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message:'Password must have uppercase number and special character number'}
-            })}   className="input input-bordered w-full max-w-xs" />
+            })}   className="input  focus:outline-none focus:ring-0 w-[100%]" />
+             <i onClick={togglePassword} class={`fa-solid pr-2 ${showPassword? 'fa-eye' : 'fa-eye-slash'}`}></i>
+             </div>
 
-
-            <label className="label"><span className="label-text">Forget Password <button className='btn btn-link'>Reset</button></span></label>
+            <label className="label"><span className="label-text">Forget Password <button onClick={handleReset} className='btn btn-link'>Reset</button></span></label>
             {errors.password && <p className="text-red-600 my-2">{errors.password?.message}</p>}
           </div>
         

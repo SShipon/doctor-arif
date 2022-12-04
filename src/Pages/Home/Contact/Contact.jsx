@@ -4,6 +4,8 @@ import appointment from "../../../assets/images/appointment.png";
 import PrimaryButton from "../../PrimaryButton/PrimaryButton";
 import UseContact from "../../UseLottie/UseContact";
 import Swal from "sweetalert2";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Contact = () => {
   const form = useRef();
 
@@ -20,11 +22,11 @@ const Contact = () => {
       .then(
         (result) => {
           console.log(result.text);
-          Swal.fire(
-            "ধন্যবাদ আপনার মেসেজটি সফল হয়েছে। !!!",
-            "ক্লিক করুন ওকে বাটনে!",
-            "ok"
-          );
+
+          toast.success("Success Notification !", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+    
         },
         (error) => {
           console.log(error.text);
@@ -49,7 +51,7 @@ const Contact = () => {
           <UseContact></UseContact>
         </div>
 
-        <div>
+        <div className="w-[100%]">
           <form ref={form} onSubmit={sendEmail}>
             <div className="grid grid-cols-1 justify-items-center gap-5">
               <input
@@ -76,13 +78,12 @@ const Contact = () => {
                 name="message"
                 rows={6}
               ></textarea>
-              <PrimaryButton type="submit" value="send">
-                Submit
-              </PrimaryButton>
+             <button className="btn btn-primary w-full max-w-md" type="Submit" value="send">Submit</button>
             </div>
           </form>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };
