@@ -1,5 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification,  sendPasswordResetEmail,  signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification,  sendPasswordResetEmail,  signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth'
 import app from '../firebase/firebase.config';
 export const AuthContext = createContext()
 const auth = getAuth(app)
@@ -37,9 +39,18 @@ const [reset, setReset] = useState(null)
  const verifyEmail = ()=>{
    sendEmailVerification(auth.currentUser)
      .then(()=>{
-      alert('cheek your email please verify now')
+     toast.success(" Please cheek your email !!!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
      })
  }
+
+
+ const updateUser =(userInfo)=>{
+   return updateProfile(user, userInfo)
+ }
+
+ 
 
 
 
@@ -57,6 +68,7 @@ const [reset, setReset] = useState(null)
          createUser,
          signIn,
          user,
+         updateUser,
          logOut,
          verifyEmail,
          googleLoginInProvider,
@@ -67,6 +79,7 @@ const [reset, setReset] = useState(null)
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
+            <ToastContainer />
         </AuthContext.Provider>
     );
 };

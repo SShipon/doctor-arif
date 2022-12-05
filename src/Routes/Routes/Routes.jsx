@@ -3,6 +3,7 @@ import Main from "../../Layout/Main";
 import About from "../../Pages/About/About";
 import Appointment from "../../Pages/Appointments/Appointment/Appointment";
 import Blogs from "../../Pages/Blogs/Blogs";
+import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Login/Register";
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
             }
         ]
         
+    },
+    {
+        path:'/dashboard',
+        element:<Dashboard></Dashboard>
     }
 ])
 

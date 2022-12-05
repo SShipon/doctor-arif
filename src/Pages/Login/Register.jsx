@@ -8,11 +8,13 @@ import github from '../../assets/google/download__20_-removebg-preview.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import Swal from "sweetalert2";
 import { GithubAuthProvider, GoogleAuthProvider, } from 'firebase/auth';
+import { toast } from 'react-toastify';
 const Register = () => {
     UseTitle("Register");
     const [showPassword, setShowPassword] = useState(false);
+    const [sigUpError, SetSignUpError]= useState('')
   const { register,handleSubmit,formState: { errors }, reset} = useForm();
-  const {createUser,googleLoginInProvider,githubSignUp,verifyEmail, handleReset}= useContext(AuthContext)
+  const {createUser,googleLoginInProvider,githubSignUp,verifyEmail, handleReset,updateUser}= useContext(AuthContext)
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider(); 
 
@@ -21,19 +23,29 @@ const Register = () => {
     setShowPassword(!showPassword)
    }
 
-  const HandleRegister = data =>{
-     createUser(data.email, data.password)
+  const HandleRegister = (data) =>{
+      console.log(data);
+      SetSignUpError('')
+      createUser(data.email, data.password)
      .then(result =>{
        const user = result.user;
        console.log(user);
-       Swal.fire(
-        " Thank you !!!",
-        'Your account has been created'       
-      );
+       toast.success("User Created Successfully!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      verifyEmail()
+       const userInfo = {
+        displayName: data.name
+       }
+       updateUser(userInfo)
+       .then(()=>{})
+       .catch(err =>{console.log(err)})
        reset()
-       verifyEmail()
      })
-    .catch(error => console.log(error))
+    .catch(error => {
+      
+     SetSignUpError(error.message)
+    })
     
   }
 
@@ -117,6 +129,7 @@ const Register = () => {
         {/* register filed and google and github button */}
 
           <input className="btn btn-accent w-full" value='Register' type="submit" />
+          {sigUpError && <p className='text-red-500'>{sigUpError}</p>}
         </form>
         <p>Already hve an account ? <Link className="text-secondary" to='/login'>Please Login</Link></p>
         <div className="divider">OR</div>
