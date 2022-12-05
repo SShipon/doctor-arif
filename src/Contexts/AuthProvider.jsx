@@ -7,27 +7,33 @@ export const AuthContext = createContext()
 const auth = getAuth(app)
 const AuthProvider = ({children}) => {
 const [user, setUser] = useState(null)
+const [loading, setLoading] = useState(true)
 const [reset, setReset] = useState(null)
 
  const createUser = (email, password)=>{
+   setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password)
  }
 
  
  const signIn =(email, password)=>{
+   setLoading(true)
   return signInWithEmailAndPassword(auth, email, password)
  }
 
  const googleLoginInProvider = (provider) =>{
+   setLoading(true)
     return signInWithPopup(auth, provider)
  }
 
  const githubSignUp = (provider)=>{
+   setLoading(true)
    return signInWithPopup(auth, provider)
  }
 
 
  const logOut  = () =>{
+   setLoading(true)
     return signOut(auth)
  }
 
@@ -59,6 +65,7 @@ const [reset, setReset] = useState(null)
    const unsubscribe = onAuthStateChanged(auth, currentUser=>{
       console.log('User observing')
       setUser(currentUser)
+      setLoading(false)
     })
     return ()=> unsubscribe()
  },[])
@@ -68,6 +75,7 @@ const [reset, setReset] = useState(null)
          createUser,
          signIn,
          user,
+         loading,
          updateUser,
          logOut,
          verifyEmail,

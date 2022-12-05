@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import google from '../../assets/google/download__5_-removebg-preview.png'
 import github from '../../assets/google/download__20_-removebg-preview.png'
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 import UseTitle from "../../Hooks/UseTitle";
 import LoginAnimation from "./LoginAnimation";
@@ -11,26 +11,29 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 const Login = () => {
   UseTitle("Login");
   const { register, formState: { errors },handleSubmit,reset } = useForm();
- const [showPassword, setShowPassword] = useState(false);
  const { signIn,googleLoginInProvider,githubSignUp} = useContext(AuthContext)
  const googleProvider = new GoogleAuthProvider();
  const githubProvider = new GithubAuthProvider();
+ const [showPassword, setShowPassword] = useState(false);
  const [logInError, setLoginError] = useState('')
+
+ const location = useLocation()
+ const navigate = useNavigate()
+
+ const from = location.state?.from?.pathname || "/";
  
  const togglePassword =()=>{
   setShowPassword(!showPassword)
  }
 
-  const handleLogin = data =>{
+  const handleLogin =( data )=>{
     setLoginError('')
     signIn(data.email, data.password)
     .then(result =>{
       const user = result.user;
       console.log(user)
-      Swal.fire(
-        " Thank you !!!",
-        'Your account has been Login'       
-      );
+      navigate(from, { replace: true });
+      
       reset()
     })
     .catch((error) => {
