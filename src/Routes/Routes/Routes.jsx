@@ -11,46 +11,48 @@ import NotFound from "../../Shared/NotFound/NotFound";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
-    {
-        path:'/',
-        element:<Main></Main>,
-        children:[
-            {
-                path:'/',
-                element:<Home></Home>
-            },
-            {
-                path:'/appointment',
-                element:<Appointment></Appointment>
-                
-            },
-            {
-                path:'/about',
-                element:<About></About>
-            },
-            {
-                path:'/blogs',
-                element:<Blogs></Blogs>
-            },
-            {
-                path:'/login',
-                element:<Login></Login>
-            },
-            {
-                path:'/register',
-                element:<Register></Register>
-            },
-            {
-                path:'*',
-                element:<NotFound></NotFound>
-            }
-        ]
-        
-    },
-    {
-        path:'/dashboard',
-        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>
-    }
-])
+  {
+    path: "/",
+    element: <Main></Main>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/appointment",
+        element: <Appointment></Appointment>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+  },
+]);
 
 export default router;

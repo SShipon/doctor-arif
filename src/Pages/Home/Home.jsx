@@ -1,5 +1,6 @@
 import React from 'react';
 import UseTitle from '../../Hooks/UseTitle';
+import OutSide from '../../Shared/outSide/OutSide';
 import Accordion from './Accordion/Accordion';
 import Banner from './Banner/Banner';
 import Contact from './Contact/Contact';
@@ -25,6 +26,7 @@ const Home = () => {
             <TextContent></TextContent>
             <Testimonials></Testimonials>
             <Accordion></Accordion>
+            <OutSide></OutSide>
         </div>
     );
 };
