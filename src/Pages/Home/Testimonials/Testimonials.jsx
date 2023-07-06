@@ -43,32 +43,33 @@ const Testimonials = () => {
     speed: 500,
     horizontal: true,
     horizontalSwiping: true,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: 3,
+    slidesToScroll: 3,
 
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 3,
+          slidesToScroll: 3,
           infinite: true,
           dots: true,
         },
       },
+      
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 3,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 3,
+          slidesToScroll: 3,
         },
       },
     ],
@@ -76,7 +77,7 @@ const Testimonials = () => {
   return (
     <section>
       <div className="my-8">
-        <div className="w-3/5 mx-auto shadow-lg">
+        <div className="w-3/1 mx-auto shadow-lg">
           <Slider {...settings}>
             {person.map((test) => (
               <MiniTestimonial key={test.id} test={test}></MiniTestimonial>

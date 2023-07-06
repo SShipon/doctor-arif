@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import appointment from "../../../assets/images/appointment.png";
-import PrimaryButton from "../../PrimaryButton/PrimaryButton";
 import UseContact from "../../UseLottie/UseContact";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from 'react-toastify';
