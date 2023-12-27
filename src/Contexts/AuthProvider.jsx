@@ -8,14 +8,13 @@ const auth = getAuth(app)
 const AuthProvider = ({children}) => {
 const [user, setUser] = useState(null)
 const [loading, setLoading] = useState(true)
-const [reset, setReset] = useState(null)
+//const [resetPassword, setReset] = useState(null);
 
  const createUser = (email, password)=>{
    setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password)
  }
 
- 
  const signIn =(email, password)=>{
    setLoading(true)
   return signInWithEmailAndPassword(auth, email, password)
@@ -31,15 +30,9 @@ const [reset, setReset] = useState(null)
    return signInWithPopup(auth, provider)
  }
 
-
  const logOut  = () =>{
    setLoading(true)
     return signOut(auth)
- }
-
- const handleReset =(email,setReset)=>{
-  return  sendPasswordResetEmail(auth,email)
-
  }
 
  const verifyEmail = ()=>{
@@ -51,14 +44,21 @@ const [reset, setReset] = useState(null)
      })
  }
 
-
  const updateUser =(userInfo)=>{
    return updateProfile(user, userInfo)
  }
 
- 
+ const resetPassword = (auth, email) => {
+  return sendPasswordResetEmail(auth, email);
+};
 
 
+// const resetPassword=(email)=> {
+//   alert('')
+//   return sendPasswordResetEmail(email).then((a) => {
+//     alert(a)
+//   })
+// }
 
 
  useEffect(()=>{
@@ -71,16 +71,19 @@ const [reset, setReset] = useState(null)
  },[])
 
     const authInfo ={
-         handleReset,
          createUser,
          signIn,
          user,
          loading,
+         setLoading,
          updateUser,
          logOut,
          verifyEmail,
          googleLoginInProvider,
          githubSignUp,
+         resetPassword
+        //  resetPassword, 
+        //  setReset
 
     }
 

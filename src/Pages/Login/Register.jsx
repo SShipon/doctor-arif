@@ -15,6 +15,7 @@ const Register = () => {
     const [sigUpError, SetSignUpError]= useState('')
   const { register,handleSubmit,formState: { errors }, reset} = useForm();
   const {createUser,googleLoginInProvider,githubSignUp,verifyEmail, handleReset,updateUser}= useContext(AuthContext)
+  console.log(handleReset)
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider(); 
 
@@ -122,7 +123,7 @@ const Register = () => {
              <i onClick={togglePassword} class={`fa-solid pr-2 ${showPassword? 'fa-eye' : 'fa-eye-slash'}`}></i>
              </div>
 
-            <label className="label"><span className="label-text">Forget Password <button onClick={handleReset} className='btn btn-link'>Reset</button></span></label>
+            <label className="label"><span className="label-text">Forget Password <Link to='/forgetPassword' className='btn btn-link'>Reset</Link></span></label>
             {errors.password && <p className="text-red-600 my-2">{errors.password?.message}</p>}
           </div>
         

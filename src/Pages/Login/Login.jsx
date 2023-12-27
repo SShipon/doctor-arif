@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import google from '../../assets/google/download__5_-removebg-preview.png'
 import github from '../../assets/google/download__20_-removebg-preview.png'
@@ -17,6 +17,8 @@ const Login = () => {
  const [showPassword, setShowPassword] = useState(false);
  const [logInError, setLoginError] = useState('')
 
+ 
+ //const 
  const location = useLocation()
  const navigate = useNavigate()
 
@@ -70,6 +72,13 @@ const Login = () => {
     .catch(err =>console.log(err))
  }
 
+//  const handleResetPassword = (email) => {
+//   handleReset(email)
+//     .then(() => {
+//       setReset(true); 
+//     })
+//     .catch(error => console.log(error))
+// };
 
   return (
    <section className="mx-5">
@@ -81,7 +90,7 @@ const Login = () => {
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Email</span></label>
           <div className="flex items-center border-solid border-2 border-gray-300 hover:border-solid rounded-[12px]">
-          <input type="text"  className="input  focus:outline-none focus:ring-0 w-[100%]" 
+          <input type="text"   className="input  focus:outline-none focus:ring-0 w-[100%]" 
             {...register("email",{required:"Email Address is required"})} />
           </div>
              {errors.email && <p className="text-red-600 my-2">{errors.email?.message}</p>}
@@ -100,7 +109,7 @@ const Login = () => {
             
 
             {/* error message */}
-          <label className="label"><span className="label-text">Forget Password <button className='btn btn-link'>Reset</button></span></label>
+          <label className="label"><span className="label-text">Forget Password <Link to='/forgetPassword' className='btn btn-link'>Reset</Link></span></label>
             {errors.password && <p className="text-red-600 my-2">{errors.password?.message}</p>}
           <input className="btn btn-accent w-full" value='Login' type="submit" />
 
