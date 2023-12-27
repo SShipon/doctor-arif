@@ -11,12 +11,12 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 const Login = () => {
   UseTitle("Login");
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
-  const { signIn, googleLoginInProvider, githubSignUp,} = useContext(AuthContext)
+  const { signIn, googleLoginInProvider, githubSignUp, sendResetPassword } = useContext(AuthContext)
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const [showPassword, setShowPassword] = useState(false);
   const [logInError, setLoginError] = useState('')
-  // const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('');
 
 
  
@@ -72,15 +72,15 @@ const Login = () => {
       .catch(err => console.log(err))
   }
 
-  // const handleForgotPassword = () => {
-  //   sendResetPassword(message)
-  // }
+  const handleForgotPassword = () => {
+    sendResetPassword(message)
+  }
 
 
-  // const handleChange = event => {
-  //   setMessage(event.target.value);
-  //   console.log('value is:', event.target.value);
-  // };
+  const handleChange = event => {
+    setMessage(event.target.value);
+    console.log('value is:', event.target.value);
+  };
 
 
 
@@ -95,7 +95,10 @@ const Login = () => {
                 <label className="label"><span className="label-text">Email</span></label>
                 <div className="flex items-center border-solid border-2 border-gray-300 hover:border-solid rounded-[12px]">
                   <input type="text"
-                   className="input  focus:outline-none focus:ring-0 w-[100%]" {...register("email",{required:"Email Address is required"})}  
+                    id="message"
+                    name="message"
+                    onChange={handleChange}
+                    value={message} className="input  focus:outline-none focus:ring-0 w-[100%]"  
                   />
                 </div>
                 {errors.email && <p className="text-red-600 my-2">{errors.email?.message}</p>}
@@ -116,7 +119,7 @@ const Login = () => {
 
 
               {/* error message */}
-              <label className="label"><span className="label-text">Forget Password <Link to='/forgotPassword' className='btn btn-link'>Reset</Link></span></label>
+              <label className="label"><span className="label-text">Forget Password <button onClick={handleForgotPassword} className='btn btn-link'>Reset</button></span></label>
               {errors.password && <p className="text-red-600 my-2">{errors.password?.message}</p>}
               <input className="btn btn-accent w-full" value='Login' type="submit" />
 

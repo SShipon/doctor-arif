@@ -1,10 +1,10 @@
 import React, { useContext, useRef, useState } from "react"
-import { Link } from "react-router-dom"
 import { AuthContext } from "../../Contexts/AuthProvider"
+import Swal from "sweetalert2"
 
 export default function ForgotPassword() {
     const emailRef = useRef()
-    const {resetPassword, loading, setLoading}= useContext(AuthContext)
+    const {sendResetPassword, loading, setLoading}= useContext(AuthContext)
     const [error, setError] = useState("")
     const [message, setMessage] = useState("")
 
@@ -17,15 +17,19 @@ export default function ForgotPassword() {
             setError("")
            // setLoading(true)
             console.log('wait')
-            await resetPassword(emailRef.current.value)
+            await sendResetPassword(emailRef.current.value)
             console.log('done')
             setMessage("Check your inbox for further instructions")
+            Swal.fire(
+                'Check your email'       
+              );
         } catch (error) {
             console.log(error)
             setError("Failed to reset password")
         }
-
+     
         setLoading(false)
+        
     }
 
     return (
@@ -33,7 +37,7 @@ export default function ForgotPassword() {
             <div className="my-20">
                 <div className="w-96 p-7 mx-auto">
                     <h2 className="text-center mb-4">Password Reset</h2>
-                    {message && <p >{message}</p>}
+                    {message && <p className="text-cyan-600">{message}</p>}
                     <form onSubmit={handleSubmit}>
                      
                        <div className="" id="email">

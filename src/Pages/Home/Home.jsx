@@ -11,6 +11,7 @@ import MakeAppointment from './MakeAppointment/MakeAppointment';
 import Services from './Services/Services';
 import Testimonials from './Testimonials/Testimonials';
 import TextContent from './Testimonials/TextContent';
+import ForgotPassword from '../Login/ForgotPassword';
 
 const Home = () => {
     UseTitle('Home')
@@ -27,6 +28,7 @@ const Home = () => {
             <Testimonials></Testimonials>
             <Accordion></Accordion>
             <OutSide></OutSide>
+            <ForgotPassword></ForgotPassword>
         </div>
     );
 };
