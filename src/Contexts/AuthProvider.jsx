@@ -48,17 +48,12 @@ const [loading, setLoading] = useState(true)
    return updateProfile(user, userInfo)
  }
 
- const resetPassword = (auth, email) => {
+ const sendResetPassword = (email) => {
   return sendPasswordResetEmail(auth, email);
 };
 
 
-// const resetPassword=(email)=> {
-//   alert('')
-//   return sendPasswordResetEmail(email).then((a) => {
-//     alert(a)
-//   })
-// }
+
 
 
  useEffect(()=>{
@@ -81,9 +76,8 @@ const [loading, setLoading] = useState(true)
          verifyEmail,
          googleLoginInProvider,
          githubSignUp,
-         resetPassword
-        //  resetPassword, 
-        //  setReset
+         sendResetPassword
+       
 
     }
 

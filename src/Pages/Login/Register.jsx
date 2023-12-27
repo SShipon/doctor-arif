@@ -123,7 +123,7 @@ const Register = () => {
              <i onClick={togglePassword} class={`fa-solid pr-2 ${showPassword? 'fa-eye' : 'fa-eye-slash'}`}></i>
              </div>
 
-            <label className="label"><span className="label-text">Forget Password <Link to='/forgetPassword' className='btn btn-link'>Reset</Link></span></label>
+            <label className="label"><span className="label-text">Forget Password <button className='btn btn-link'>Reset</button></span></label>
             {errors.password && <p className="text-red-600 my-2">{errors.password?.message}</p>}
           </div>
         

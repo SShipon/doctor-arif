@@ -9,7 +9,7 @@ import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Login/Register";
 import NotFound from "../../Shared/NotFound/NotFound";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
-import ForgotPassword from "../../Pages/Login/ForgotPassword";
+
 
 const router = createBrowserRouter([
   {
@@ -40,10 +40,7 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
-      {
-        path:'/forgetPassword',
-         element:<ForgotPassword></ForgotPassword>
-      },
+      
       {
         path: "*",
         element: <NotFound></NotFound>,

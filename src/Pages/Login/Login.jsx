@@ -11,11 +11,13 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 const Login = () => {
   UseTitle("Login");
   const { register, formState: { errors },handleSubmit,reset } = useForm();
- const { signIn,googleLoginInProvider,githubSignUp} = useContext(AuthContext)
+ const { signIn,googleLoginInProvider,githubSignUp, sendResetPassword} = useContext(AuthContext)
  const googleProvider = new GoogleAuthProvider();
  const githubProvider = new GithubAuthProvider();
  const [showPassword, setShowPassword] = useState(false);
  const [logInError, setLoginError] = useState('')
+ const emailRef = useRef()
+ console.log(emailRef)
 
  
  //const 
@@ -72,13 +74,12 @@ const Login = () => {
     .catch(err =>console.log(err))
  }
 
-//  const handleResetPassword = (email) => {
-//   handleReset(email)
-//     .then(() => {
-//       setReset(true); 
-//     })
-//     .catch(error => console.log(error))
-// };
+ const handleForgotPassword = (data) => {
+  console.log(data.email,'email data forget')
+     sendResetPassword()
+
+};
+
 
   return (
    <section className="mx-5">
@@ -90,7 +91,7 @@ const Login = () => {
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Email</span></label>
           <div className="flex items-center border-solid border-2 border-gray-300 hover:border-solid rounded-[12px]">
-          <input type="text"   className="input  focus:outline-none focus:ring-0 w-[100%]" 
+          <input type="text" ref={emailRef}   className="input  focus:outline-none focus:ring-0 w-[100%]" 
             {...register("email",{required:"Email Address is required"})} />
           </div>
              {errors.email && <p className="text-red-600 my-2">{errors.email?.message}</p>}
@@ -109,7 +110,7 @@ const Login = () => {
             
 
             {/* error message */}
-          <label className="label"><span className="label-text">Forget Password <Link to='/forgetPassword' className='btn btn-link'>Reset</Link></span></label>
+          <label className="label"><span className="label-text">Forget Password <button onClick={handleForgotPassword} className='btn btn-link'>Reset</button></span></label>
             {errors.password && <p className="text-red-600 my-2">{errors.password?.message}</p>}
           <input className="btn btn-accent w-full" value='Login' type="submit" />
 
